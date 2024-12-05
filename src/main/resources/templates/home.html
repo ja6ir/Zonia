@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zonia Career</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <a class="nav-button" href="home.html">Home</a>
+        <a class="nav-button" href="about.html">About</a>
+        <a class="nav-button" href="contact.html">Contact Us</a>
+        <a class="nav-button" href="resume">View Resume</a>
+        <a class="nav-button" href="logout">Logout</a> <!-- Corrected typo: added .html extension -->
+    </nav>
+    <img src="/LOGO_inv.jpg">
+    <div class="chat-container">
+
+        <div class="chat-history">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <span class="message-icon">🤖</span><br> 
+                    
+                    <div id="welcomeMessage">
+                        <h2>Hello <span th:text="${name}"></span>, Welcome to Zonia Career Chatbot!</h2>
+
+                        <p>Let's embark on a journey to find your perfect job match. Click "Get Started" to begin, and answer the following questions to help us understand your preferences and aspirations.</p><br><br>
+                        <button onclick="startQuestionnaire()">Get Started</button>
+                    </div>
+                    
+                    <div id="question1" style="display: none;">
+                        <h2>What type of projects or tasks do you find most fulfilling and enjoyable?</h2><br><br>
+                        <input type="text" id="answer1" placeholder="Type your answer...">
+                        <button onclick="showQuestion(2)">Next</button>
+                    </div>
+
+                    <div id="question2" style="display: none;">
+                        <h2>What work environment brings out the best in you?</h2><br><br>
+                        <input type="text" id="answer2" placeholder="Type your answer...">
+                        <button onclick="showQuestion(3)">Next</button>
+                    </div>
+                    
+                    <div id="question3" style="display: none;">
+                        <h2>What industries or sectors are you particularly interested in?</h2><br><br>
+                        <input type="text" id="answer3" placeholder="Type your answer...">
+                        <button onclick="showQuestion(4)">Next</button>
+                    </div>
+                    
+                    <div id="question4" style="display: none;">
+                        <h2>Do you prefer a structured or flexible work schedule?</h2><br><br>
+                        <input type="text" id="answer4" placeholder="Type your answer...">
+                        <button onclick="showQuestion(5)">Next</button>
+                    </div>
+                    
+                    <div id="question5" style="display: none;">
+                        <h2>What career goals do you aim to achieve in the next few years?</h2><br><br>
+                        <input type="text" id="answer5" placeholder="Type your answer...">
+                        <button id="submitb" onclick="submitAnswers()">Submit</button>
+                    </div>
+                    <div id="loadingSpinner" class="loading-spinner" style="display: none;"></div>
+                    
+                    <div id="chatGptResponse" style="display: none;">
+                        <!-- Display the response content here -->
+                        <div id="responseContent">   
+							
+						</div>
+						<div id="loadingSpinner2" class="loading-spinner" style="display: none;"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- More chat messages go here -->
+        </div>
+       
+    </div>
+  
+<script>
+    function startQuestionnaire() {
+        // Hide the welcome message
+        document.getElementById('welcomeMessage').style.display = 'none';
+
+        // Show the first question
+        document.getElementById('question1').style.display = 'block';
+    }
+
+    function showQuestion(questionNumber) {
+        document.getElementById('question' + (questionNumber - 1)).style.display = 'none';
+        document.getElementById('question' + questionNumber).style.display = 'block';
+    }
+
+    function submitAnswers() {
+        document.getElementById('loadingSpinner').style.display = 'block';
+        document.getElementById('submitb').style.display = 'none';
+
+        // Collect all answers and send to the backend as form data
+        const answer1 = document.getElementById('answer1').value;
+        const answer2 = document.getElementById('answer2').value;
+        const answer3 = document.getElementById('answer3').value;
+        const answer4 = document.getElementById('answer4').value;
+        const answer5 = document.getElementById('answer5').value;
+
+        // Create FormData object and append answers with the key "userInputs"
+        const formData = new FormData();
+        formData.append('userInputs', answer1);
+        formData.append('userInputs', answer2);
+        formData.append('userInputs', answer3);
+        formData.append('userInputs', answer4);
+        formData.append('userInputs', answer5);
+
+        // Send the answers to the backend using an AJAX request
+        fetch('/submitAnswers', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('loadingSpinner').style.display = 'none';
+            
+
+            if (data.hasOwnProperty('choices')) {
+                const choices = data.choices;
+
+                if (choices.length > 0 && choices[0].hasOwnProperty('message')) {
+                    const message = choices[0].message;
+
+                    if (message.hasOwnProperty('content')) {
+                        const content = message.content;
+
+                        // Split the content into the analysis report and the matched jobs
+                        const splitContent = content.split("Matched Jobs:");
+                        const analysisReport = splitContent[0];
+                        const matchedJobsStr = splitContent[1];
+
+                        // Split the matched jobs string into individual jobs
+                        const jobs = matchedJobsStr.split('\n');
+
+                        // Initialize an empty object to store the job IDs and scores
+                        let jobScores = {};
+
+                        // Iterate over each job
+                        for (let i = 0; i < jobs.length; i++) {
+                            // Split the job string into job ID and score
+                            const jobDetails = jobs[i].split(':');
+
+                            // Add the job ID and score to the jobScores object
+                            jobScores[jobDetails[0].trim()] = parseFloat(jobDetails[1]);
+                        }
+
+                        // Show the chatGptResponse div
+                        document.getElementById('chatGptResponse').style.display = 'block';
+
+                        // Replace newline characters with <br> tags
+                        const formattedContent = analysisReport
+                        				// Remove "1)" and "2)"
+                        				    .replace(/\b\d+\)/g, '')
+
+    							// Replace **text** with <strong>text</strong> for bold formatting
+    											.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+   												 // Replace newline characters with <br> tags
+   												 .replace(/\n/g, '<br>')
+   												 // Remove characters #, $, and * 
+   												 .replace(/[#$*]/g, "");
+                        // Hide question 5
+                        document.getElementById('question5').style.display = 'none';
+                        // Display the formatted response content on the webpage
+                        document.getElementById('responseContent').innerHTML = formattedContent;
+
+                        // Create the "Click Me" button element
+                        var btn = document.createElement("BUTTON");
+                        btn.innerHTML = "View Jobs"; // Set the button text
+                        btn.onclick = function() {
+							
+							document.getElementById('loadingSpinner2').style.display = 'block';
+							document.getElementById('responseContent').removeChild(btn);
+                            // Convert jobScores object to JSON string
+                            const jobScoresJson = JSON.stringify(jobScores);
+
+                            // Send the jobScoresJson to the backend using an AJAX request
+                            fetch('/processJobScores', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: jobScoresJson
+                            })
+                            .then(response => response.text())  // Treat the response as text
+                            .then(data => {
+								document.getElementById('loadingSpinner2').style.display = 'none';
+								
+
+								
+                                // The data is the HTML rendered by Thymeleaf
+                                // Insert the data into the responseContent div
+                                document.getElementById('responseContent').innerHTML += data;
+                            });
+                        };
+
+                        // Append the button to the responseContent div
+                        document.getElementById('responseContent').appendChild(btn);
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+
+</body>
+</html>

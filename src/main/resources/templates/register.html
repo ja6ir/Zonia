@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img id="reg_logo" src="/LOGO_inv.jpg">
+    <div class="reg-container">
+        <h2>Register for Zonia</h2>
+        <form class="reg-form" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="file" name="file">
+            <button id="RegisterButton" onclick="showSpinner()" >Upload Resume</button>
+        </form>
+        <div id="loadingSpinner" class="loading-spinner" style="display: none;"></div>
+				<div id="loadingNote" style="display: none;">
+    			<p>Please wait while Zonia cracks your resume...</p>
+</div>     
+   </div>
+                    
+                    
+                    
+    </div>
+    
+    <script>
+function showSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'block';
+    document.getElementById('loadingNote').style.display = 'block';   
+}
+</script>
+</body>
+</html>

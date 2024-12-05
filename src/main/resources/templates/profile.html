@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img id="reg_logo" src="/LOGO_inv.jpg">
+
+    <div class="reg-container">
+        <h2>User Profile</h2>
+        <form th:action="@{/reguser}" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" th:value="${name}" placeholder="Enter your fullname" required>
+           <label for="age">Age</label>
+			<input type="number" id="age" name="age" th:value="${age}" min="14" placeholder="Enter your age" required>
+			<label for="qualifications">Qualifications</label>
+            <input type="text" id="qualifications" name="qualifications" th:value="${qualifications}" placeholder="Enter your qualifications"  required>
+            <label for="skills">Skills</label>
+            <input type="text" id="skills" name="skills" th:value="${skills}" placeholder="Enter your skills" required>
+            <label for="experience">Experience</label>
+            <input type="number" id="experience" name="experience" th:value="${experience}" placeholder="Enter no. years of experience" required>
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" th:value="${location}" placeholder="Enter your location" required>
+             <label for="gender">Gender</label>
+<select id="gender" name="gender"  required>
+    <option value="">Select...</option>
+    <option th:selected="${gender == 'Male'}" value="Male">Male</option>
+    <option th:selected="${gender == 'Female'}" value="Female">Female</option>
+    <option th:selected="${gender == 'Other'}" value="Other">Other</option>
+</select>
+            
+                        <label for="otherPreference">Other Preferences</label>
+            
+            <input type="text" id="otherPreference" name="otherPreference" th:value="${otherPreference}" placeholder="Enter your Other Preferences"required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+            <label for="username">Create Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            <label for="password">Create Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <input type="text" id="filepath" name="filepath" th:value="${filepath}" hidden>
+
+            
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>

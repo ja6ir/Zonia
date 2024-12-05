@@ -1,0 +1,387 @@
+/* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #202020;
+    color: #fff;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #2b3329;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    border: #fff;
+
+    
+
+}
+
+.nav-button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 10px;
+    font-size: small;
+    
+}
+
+.nav-button:hover {
+    color: #9b6e20;
+}
+
+/* Chat container styles */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Chat history styles */
+.chat-history {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.bot-message {
+    flex-direction: row-reverse;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2b3329;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-icon {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Chat input styles */
+.chat-input {
+    display: flex;
+    align-items: center;
+    margin-top: auto; /* Pushes chat input to the bottom */
+}
+
+#queryInput {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2b3329;
+    color: #fff;
+   margin-left:16% ;
+    width: 60%;
+    position: fixed;
+    bottom: 2%;
+    
+}
+
+#sendButton {
+    flex: 1;
+    padding: 10,20px;
+    border: none;
+    background-color: #deac57;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 6.2%;
+    right: 4.5% ;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+}
+
+#sendButton:hover {
+    background-color:#9b6e20 ;
+}
+/* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #d9333354;
+    color: #fff;
+}
+
+/* Login and Reg container styles */
+.reg-container {
+    max-width: 400px;
+    margin: 0 auto;
+margin-top: 7%;
+margin-right: 8% ;
+    padding: 40px;
+    text-align: center;
+    
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+margin-top: 7%;
+margin-right: 8% ;
+    padding: 40px;
+    text-align: center;
+    
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Login and Reg form styles */
+.reg-form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    
+   background-color: antiquewhite;
+    border-radius: 5px;
+    background-color: #2b3329;
+    color: #fff;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2b3329;
+    color: #fff;
+} 
+select:first-of-type{
+
+
+    color: #908f8fd5;
+  }
+  select option:hover,:checked
+  {
+    background-color: #9b6e20;
+  }
+  section
+
+ option[value=""][disabled]
+{
+    display: none;
+    
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #deac57;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.button1
+{
+    padding: 10px 20px;
+    background-color: #deac57;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: small;
+    transition: background-color 0.3s;
+    
+}
+.button1:hover
+{
+    background-color: #9b6e20;
+}
+
+button:hover {
+    background-color: #9b6e20;
+}
+/* Description styles */
+.description { 
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 9%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 2%;
+    
+    border-radius: 10px;
+    
+    
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.description h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #fff;
+}
+#p1
+{
+font-size: 12px;
+padding: 6px;
+}
+/* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #1c211b;
+    color: #fff;
+}
+
+
+/* Contact container styles */
+.contact-container {
+  
+    
+    text-align: center;
+    background-color: #2b3329;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 18%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 2%;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+img {
+display: block;
+margin-left: 10px;
+width: 25%;
+position: fixed;
+}
+#contact{
+    
+    display: block;
+    
+    padding: 5px;
+    top: 17%;
+    right: 25%;
+}
+#reg_logo {
+display: block;
+margin-left: 10%;
+top:7% ;
+
+width: 40%;
+position: fixed;
+}
+.menu-button {
+    display: block;
+    background-color: #deac57;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+justify-content: right;
+}
+
+.button-menu {
+
+    
+    justify-content: center;
+
+} 
+main {
+    padding: 20px;
+}
+.loading-spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #deac57;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        display: none;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }

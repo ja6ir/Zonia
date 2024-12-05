@@ -1,0 +1,24 @@
+<br>
+<hr>
+<br>
+     <h1><center>Discover The Ideal Job Matches For You</center></h1>               
+    <div th:each="jobDetail : ${jobDetailsWithScores}">
+		<br><br>
+		<hr >
+		<br>
+    <br><h3><p style="color: #deac57;"><strong>Title:</strong> <span th:text="${jobDetail.key.title}"></span></p><br></h3>
+    <p><strong style="color: #deac57;">Salary:</strong> <span th:text="${jobDetail.key.salary}"></span></p><br>
+    <p><strong style="color: #deac57;">Experience Required:</strong> <span th:text="${jobDetail.key.experienceRequired}"></span></p><br>
+    <p><strong style="color: #deac57;">Key Skills:</strong> <span th:text="${#strings.arrayJoin(jobDetail.key.keySkills, ', ')}"></span></p><br>
+    <p><strong style="color: #deac57;">Role Category:</strong> <span th:text="${jobDetail.key.roleCategory}"></span></p><br>
+    <p><strong style="color: #deac57;">Location:</strong> <span th:text="${jobDetail.key.location}"></span></p><br>
+    <p><strong style="color: #deac57;">Functional Area:</strong> <span th:text="${jobDetail.key.functionalArea}"></span></p><br>
+    <p><strong style="color: #deac57;">Industry:</strong> <span th:text="${jobDetail.key.industry}"></span></p><br>
+    <p><strong style="color: #deac57;">Role:</strong> <span th:text="${jobDetail.key.role}"></span></p><br>
+    <p><strong style="color: #deac57;">Qualifications:</strong> <span th:text="${jobDetail.key.qualifications != null ? #strings.arrayJoin(jobDetail.key.qualifications, ', ') : 'N/A'}"></span></p><br><br>
+<p><center><strong>You have a matching score of <strong style="color: #deac57;" th:text="${jobDetail.value}"></strong> out of 10</strong></center></p><br>
+ <center> <button onclick="window.location.href = '/apply';">Apply</button></center><br>
+
+</div>
+
+                    

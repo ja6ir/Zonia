@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Job Postings</h2>
+
+<div id="jobs"></div>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+// Your JSON data
+var data = /*[[${data}]]*/ 'default';
+
+// Get the div element where you want to display the jobs
+var jobsDiv = document.getElementById('jobs');
+
+// Loop through each job in the data
+for (var i = 0; i < data.length; i++) {
+    // Create a new div element for each job
+    var jobDiv = document.createElement('div');
+
+    // Add job details to the div
+    jobDiv.innerHTML = '<h3>' + data[i].title + '</h3>' +
+                       '<p>Salary: ' + data[i].salary + '</p>' +
+                       '<p>Experience Required: ' + data[i].experienceRequired + '</p>' +
+                       '<p>Key Skills: ' + data[i].keySkills.join(', ') + '</p>' +
+                       '<p>Role Category: ' + data[i].roleCategory + '</p>' +
+                       '<p>Location: ' + data[i].location + '</p>' +
+                       '<p>Functional Area: ' + data[i].functionalArea + '</p>' +
+                       '<p>Industry: ' + data[i].industry + '</p>' +
+                       '<p>Role: ' + data[i].role + '</p>';
+
+    // Add the job div to the jobs div
+    jobsDiv.appendChild(jobDiv);
+}
+/*]]>*/
+</script>
+
+</body>
+</html>
